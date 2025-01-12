@@ -2,7 +2,7 @@
 CREATE TABLE
     articles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        slug VARCHAR(255) NOT NULL,
+        slug VARCHAR(255) UNIQUE NOT NULL,
         title VARCHAR(255) NOT NULL,
         body TEXT NOT NULL,
         hero_image VARCHAR(255),

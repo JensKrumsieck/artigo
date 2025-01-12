@@ -3,7 +3,7 @@ pub mod models;
 use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
-    routing::get,
+    routing::{get, post},
     Router,
 };
 use sqlx::sqlite::SqlitePoolOptions;
@@ -16,6 +16,8 @@ pub async fn serve() -> anyhow::Result<()> {
     let app = Router::new()
         .route("/status", get(|| async { "OK" }))
         .route("/articles", get(models::get_articles))
+        .route("/articles", post(models::create_article))
+        .route("/articles/{slug}", get(models::get_article_by_slug))
         .with_state(pool);
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
