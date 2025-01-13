@@ -20,3 +20,18 @@ Content-Type: application/json
   "heroImage": "https://example.com/image.jpg",
   "tags": "[\"new\", \"article\"]"	
 }
+
+### Update article
+PUT {{base}}/articles/new-article
+Content-Type: application/json
+
+{
+  "title": "New-ish article",
+  "slug": "my-new-article",
+  "body": "This is a new article",
+  "heroImage": "https://example.com/image.jpg",
+  "tags": "[\"new\", \"article\"]"	
+}
+
+### Delete article
+DELETE {{base}}/articles/my-new-article

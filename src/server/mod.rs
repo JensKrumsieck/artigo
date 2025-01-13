@@ -3,7 +3,7 @@ pub mod models;
 use axum::{
     http::StatusCode,
     response::{IntoResponse, Response},
-    routing::{get, post},
+    routing::{delete, get, post, put},
     Router,
 };
 use sqlx::sqlite::SqlitePoolOptions;
@@ -34,6 +34,8 @@ pub async fn serve() -> anyhow::Result<()> {
         .route("/articles", get(models::get_articles))
         .route("/articles", post(models::create_article))
         .route("/articles/{slug}", get(models::get_article_by_slug))
+        .route("/articles/{slug}", put(models::update_article))
+        .route("/articles/{slug}", delete(models::delete_article))
         .layer(TraceLayer::new_for_http())
         .with_state(pool);
 
