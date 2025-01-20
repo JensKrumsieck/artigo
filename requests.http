@@ -18,7 +18,7 @@ Content-Type: application/json
   "slug": "new-article",
   "body": "This is a new article",
   "heroImage": "https://example.com/image.jpg",
-  "tags": "[\"new\", \"article\"]"	
+  "tags": ["new", "article"]	
 }
 
 ### Update article
@@ -30,7 +30,7 @@ Content-Type: application/json
   "slug": "my-new-article",
   "body": "This is a new article",
   "heroImage": "https://example.com/image.jpg",
-  "tags": "[\"new\", \"article\"]"	
+  "tags": ["new", "article"]
 }
 
 ### Delete article
