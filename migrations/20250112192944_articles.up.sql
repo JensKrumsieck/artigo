@@ -1,15 +1,18 @@
 -- Add up migration script here
 CREATE TABLE
     articles (
-        id SERIAL PRIMARY KEY,
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         slug VARCHAR(255) UNIQUE NOT NULL,
         title VARCHAR(255) NOT NULL,
         body TEXT NOT NULL,
         hero_image VARCHAR(255),
-        tags TEXT[] DEFAULT '{}',
-        created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL,
-        updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP NOT NULL
+        tags TEXT[],
+        created_at TIMESTAMPTZ DEFAULT now() NOT NULL,
+        updated_at TIMESTAMPTZ DEFAULT now() NOT NULL
     );
+
+CREATE INDEX ON articles(slug);
+CREATE INDEX ON article(created_at DESC);
 
 -- create dummy
 INSERT INTO
