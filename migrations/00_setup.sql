@@ -15,11 +15,13 @@ CREATE OR REPLACE FUNCTION trigger_updated_at(tablename regclass)
     RETURNS VOID AS 
 $$
 BEGIN
-    EXECUTE format('CREATE TRIGGER set_updated_at 
-                        BEFORE UPDATE 
-                        ON %s 
-                        FOR EACH ROW 
-                        WHEN (old IS DISTINCT FROM new) 
-                    EXECUTE FUNCTION set_updated_at()', tablename);
+    EXECUTE format(
+        'CREATE TRIGGER set_updated_at 
+            BEFORE UPDATE 
+            ON %s 
+            FOR EACH ROW 
+            WHEN (old IS DISTINCT FROM new) 
+        EXECUTE FUNCTION set_updated_at()', 
+        tablename);
 END;
 $$ LANGUAGE plpgsql;
